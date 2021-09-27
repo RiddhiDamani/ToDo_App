@@ -24,6 +24,7 @@ export default function UserAuthRegister({ user, setUser }) {
         <hr />
         <CreateToDoItem />
         <hr />
+        <h3>ToDo Lists</h3>
         <ToDoList lists={lists} />
       </div>
     );

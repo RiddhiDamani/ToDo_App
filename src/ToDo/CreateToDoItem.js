@@ -5,19 +5,22 @@ export default function CreateToDoItem() {
     <form onSubmit={(e) => e.preventDefault()}>
       <div>
         <h3>ToDo Form</h3>
-        <label htmlFor="create-todo-title">Title:</label>
+        <label className="space" htmlFor="create-todo-title">
+          Title:
+        </label>
         <input
+          className="space"
           type="text"
           name="create-todo-title"
           id="create-todo-title"
         ></input>
+        <label className="space" htmlFor="create-todo-description ">
+          Description:
+        </label>
+        <textarea className="space"></textarea>
       </div>
       <br />
-      <label htmlFor="create-todo-description ">Description:</label>
-      <textarea></textarea>
-      <br />
-      <br />
-      <input type="submit" value="Add"></input>
+      <input className="space" type="submit" value="Add"></input>
     </form>
   );
 }
