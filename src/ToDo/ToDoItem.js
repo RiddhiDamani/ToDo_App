@@ -6,10 +6,34 @@ export default function ToDoItem({ title, description }) {
   let complete = false;
   return (
     <div>
-      <h3>{title}</h3>
+      <table>
+        <tbody>
+          {/* <tr>
+            <th>Completed?</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Date Created</th>
+            <th>Date Completed</th>
+          </tr> */}
+          <tr>
+            <td>
+              <input type="checkbox" />
+            </td>
+            <td>{title}</td>
+            <td>{description}</td>
+            <td>{dateCreated}</td>
+            <td>{}</td>
+          </tr>
+        </tbody>
+      </table>
+      {/* <hr />
+      <span>
+        <input type="checkbox" />
+        <b>{title}</b>
+      </span>
       <div>{description}</div>
       <div>{dateCreated}</div>
-      <br />
+      <br /> */}
     </div>
   );
 }

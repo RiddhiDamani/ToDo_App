@@ -10,7 +10,7 @@ export default function Logout({ user, setUserState, setToDos }) {
       }}
     >
       Logged in as: <b>{user}</b>
-      <input type="submit" value="Logout"></input>
+      <input className="space" type="submit" value="Logout"></input>
     </form>
   );
 }

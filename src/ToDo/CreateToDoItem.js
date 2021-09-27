@@ -4,7 +4,7 @@ export default function CreateToDoItem() {
   return (
     <form onSubmit={(e) => e.preventDefault()}>
       <div>
-        <h3>Add To Do List </h3>
+        <h3>ToDo Form</h3>
         <label htmlFor="create-todo-title">Title:</label>
         <input
           type="text"
