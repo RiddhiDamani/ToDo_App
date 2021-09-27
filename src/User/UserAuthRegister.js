@@ -27,11 +27,11 @@ export default function UserAuthRegister({ user, setUser, setToDos }) {
     );
   } else {
     return (
-      <>
+      <div>
         <Login setUser={setUser} />
         <br></br>
         <Register setUser={setUser} />
-      </>
+      </div>
     );
   }
 }

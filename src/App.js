@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import AppHeader from "./AppHeader.js";
-import UserAuthRegister from "./user/UserAuthRegister.js";
+import UserAuthRegister from "./User/UserAuthRegister.js";
 
 function App() {
   const [user, setUser] = useState("");
