@@ -1,23 +1,15 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import AppHeader from "./AppHeader.js";
+import UserAuthRegister from "./user/UserAuthRegister.js";
 
 function App() {
+  const [user, setUser] = useState("");
+  const initialTodo = [];
+  const [todos, setTodos] = useState(initialTodo);
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <AppHeader />
+      <UserAuthRegister user={user} setUser={setUser} setTodos={setTodos} />
     </div>
   );
 }
