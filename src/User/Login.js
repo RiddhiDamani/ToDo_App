@@ -3,6 +3,15 @@ import React, { useState } from "react";
 export default function Login({ setUser }) {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const handleLUsername = (evt) => {
+    setUsername(evt.target.value);
+  };
+
+  const handleLPassword = (evt) => {
+    setPassword(evt.target.value);
+  };
+
   return (
     <form
       onSubmit={(e) => {
@@ -16,7 +25,7 @@ export default function Login({ setUser }) {
         name="login-username"
         id="login-username"
         value={username}
-        onChange={(e) => setUsername(e.target.value)}
+        onChange={handleLUsername}
       ></input>
       <br></br>
       <br></br>
@@ -26,7 +35,7 @@ export default function Login({ setUser }) {
         name="login-password"
         id="login-password"
         value={password}
-        onChange={(e) => setPassword(e.target.value)}
+        onChange={handleLPassword}
       ></input>
       <br></br>
       <br></br>

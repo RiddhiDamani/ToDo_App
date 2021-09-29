@@ -1,12 +1,11 @@
 import React from "react";
 
-export default function Logout({ user, setUserState, setToDos }) {
+export default function Logout({ user, setUser }) {
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setUserState("");
-        setToDos([]);
+        setUser("");
       }}
     >
       Logged in as: <b>{user}</b>

@@ -2,6 +2,7 @@ import React from "react";
 
 export default function ToDoItem({ title, description }) {
   let date = Date(Date.now());
+  console.log(date);
   const dateCreated = date.toString().slice(0, 25);
   const dateCompleted = "";
 
