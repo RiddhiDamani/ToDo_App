@@ -1,22 +1,17 @@
 import React, { useState } from "react";
 
-export default function Login({ setUser }) {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
-
-  const handleLUsername = (evt) => {
-    setUsername(evt.target.value);
-  };
-
-  const handleLPassword = (evt) => {
-    setPassword(evt.target.value);
-  };
+export default function Login({ dispatchUser }) {
+  const [formData, setFormData] = useState({
+    username: "",
+    password: "",
+    passwordRepeat: "",
+  });
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        setUser(username);
+        dispatchUser({ type: "LOGIN", username: formData.username });
       }}
     >
       <label htmlFor="login-username">Username:</label>
@@ -24,22 +19,20 @@ export default function Login({ setUser }) {
         type="text"
         name="login-username"
         id="login-username"
-        value={username}
-        onChange={handleLUsername}
+        value={formData.username}
+        onChange={(e) => setFormData({ ...formData, username: e.target.value })}
       ></input>
       <br></br>
       <br></br>
       <label htmlFor="login-password">Password:</label>
+      <input type="password" name="login-password" id="login-password"></input>
+      <br></br>
+      <br></br>
       <input
-        type="password"
-        name="login-password"
-        id="login-password"
-        value={password}
-        onChange={handleLPassword}
+        type="submit"
+        value="Login"
+        disabled={formData.username.length === 0}
       ></input>
-      <br></br>
-      <br></br>
-      <input type="submit" value="Login"></input>
       <br></br>
       <br></br>
       <label>
