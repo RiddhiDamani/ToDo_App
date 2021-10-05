@@ -3,20 +3,20 @@ import Login from "./Login.js";
 import Logout from "./Logout.js";
 import Register from "./Register.js";
 
-export default function UserAuthRegister({ user, dispatchUser }) {
+export default function UserAuthRegister({ user, dispatch }) {
   if (user) {
     return (
       <div>
-        <Logout user={user} dispatchUser={dispatchUser} />
+        <Logout user={user} dispatch={dispatch} />
         <hr />
       </div>
     );
   } else {
     return (
       <div>
-        <Login dispatchUser={dispatchUser} />
+        <Login dispatch={dispatch} />
         <br></br>
-        <Register dispatchUser={dispatchUser} />
+        <Register dispatch={dispatch} />
       </div>
     );
   }

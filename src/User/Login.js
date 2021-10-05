@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-export default function Login({ dispatchUser }) {
+export default function Login({ dispatch }) {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
@@ -11,7 +11,7 @@ export default function Login({ dispatchUser }) {
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatchUser({ type: "LOGIN", username: formData.username });
+        dispatch({ type: "LOGIN", username: formData.username });
       }}
     >
       <label htmlFor="login-username">Username:</label>

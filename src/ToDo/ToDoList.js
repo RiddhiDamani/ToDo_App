@@ -1,11 +1,11 @@
 import React from "react";
 import ToDoItem from "./ToDoItem";
 
-export default function ToDoList({ lists = [] }) {
+export default function ToDoList({ todos = [], dispatch }) {
   return (
     <div>
-      {lists.map((l, i) => (
-        <ToDoItem {...l} key={"list-" + i} />
+      {todos.map((todo, i) => (
+        <ToDoItem {...todo} index={i} key={"todo-" + i} dispatch={dispatch} />
       ))}
     </div>
   );

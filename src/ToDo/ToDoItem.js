@@ -1,27 +1,17 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function ToDoItem({
+  index,
   title,
   description,
   dateCreated,
   complete,
   dateCompleted,
+  dispatch,
 }) {
-  const [checked, setCheckBox] = useState(false);
-
-  function handleChange() {
-    setCheckBox(!checked);
-  }
-
   return (
     <div>
       <div>
-        <input
-          type="checkbox"
-          name="checkbox"
-          defaultChecked={checked}
-          onChange={handleChange}
-        />
         <span>
           <strong>Title: </strong>
           {title}
@@ -37,10 +27,27 @@ export default function ToDoItem({
         </span>
         <br />
         <span>
+          <input
+            type="checkbox"
+            name="checkbox"
+            checked={complete}
+            onChange={(e) => {
+              dispatch({ type: "TOGGLE_TODO", index });
+            }}
+          />
           <strong>Date Completed:</strong>
-          {checked && <text> {Date(Date.now()).toString().slice(0, 25)} </text>}
+          {dateCompleted && (
+            <text> {Date(Date.now()).toString().slice(0, 25)} </text>
+          )}
         </span>
         <br />
+        <button
+          onClick={(e) => {
+            dispatch({ type: "DELETE_TODO", index });
+          }}
+        >
+          DELETE
+        </button>
         <hr></hr>
       </div>
     </div>
