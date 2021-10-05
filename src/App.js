@@ -7,48 +7,22 @@ import "./App.css";
 import appReducer from "./reducers.js";
 
 function App() {
-  //const [user, setUser] = useState("");
-
-  const [state, dispatchUser] = useReducer(appReducer, { user: "" });
-  const { user } = state;
-
-  let dateCreated = Date(Date.now()).toString().slice(0, 25);
-  let dateCompleted = "";
-  let complete = false;
-
-  const lists = [
-    {
-      title: "Learn ReactJS",
-      description: "Trying to learn. 10% accomplished",
-      dateCreated: dateCreated,
-      complete: complete,
-      dateCompleted: dateCompleted,
-    },
-    {
-      title: "Learn HTML5",
-      description: "Trying to learn. 30% accomplished",
-      dateCreated: dateCreated,
-      complete: complete,
-      dateCompleted: dateCompleted,
-    },
-    {
-      title: "Learn Express",
-      description: "Trying to learn. 40% accomplished",
-      dateCreated: dateCreated,
-      complete: complete,
-      dateCompleted: dateCompleted,
-    },
-  ];
+  const initialToDos = [];
+  const [state, dispatch] = useReducer(appReducer, {
+    user: "",
+    todos: initialToDos,
+  });
+  const { user, todos } = state;
 
   return (
     <div>
       <AppHeader />
-      <UserAuthRegister user={user} dispatchUser={dispatchUser} />
+      <UserAuthRegister user={user} dispatch={dispatch} />
       <br />
-      {user && <CreateToDoItem />}
+      {user && <CreateToDoItem dispatch={dispatch} />}
       {user && <hr />}
       {user && <h3>ToDo Lists</h3>}
-      {user && <ToDoList lists={lists} />}
+      {user && <ToDoList todos={todos} dispatch={dispatch} />}
     </div>
   );
 }
