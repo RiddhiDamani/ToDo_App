@@ -6,6 +6,7 @@ export default function Logout({ user, dispatch }) {
       onSubmit={(e) => {
         e.preventDefault();
         dispatch({ type: "LOGOUT" });
+        dispatch({ type: "CLEAR_TODOLIST" });
       }}
     >
       Logged in as: <b>{user}</b>

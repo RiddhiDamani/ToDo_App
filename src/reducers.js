@@ -20,14 +20,21 @@ function todoReducer(state, action) {
       };
       return [newToDo, ...state];
     case "TOGGLE_TODO":
-      const dateCheck = Date(Date.now()).toString().slice(0, 25);
-      return state.map((todo, i) =>
-        i === action.index
-          ? { ...todo, complete: !todo.complete, dateCompleted: dateCheck }
-          : todo
-      );
+      const updatedToDo = {
+        index: action.index,
+        title: action.title,
+        description: action.description,
+        dateCreated: action.dateCreated,
+        complete: action.complete,
+        dateCompleted: action.dateCompleted,
+      };
+      const oldToDo = state.filter((todo, i) => i !== action.index);
+      return [...oldToDo, updatedToDo];
     case "DELETE_TODO":
+      console.log("Index: ", action.index);
       return state.filter((todo, i) => i !== action.index);
+    case "CLEAR_TODOLIST":
+      return [];
     default:
       return state;
   }
