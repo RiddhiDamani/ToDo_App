@@ -1,4 +1,4 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
 import AppHeader from "./AppHeader.js";
 import UserAuthRegister from "./User/UserAuthRegister.js";
 import CreateToDoItem from "./ToDo/CreateToDoItem.js";
@@ -13,6 +13,14 @@ function App() {
     todos: initialToDos,
   });
   const { user, todos } = state;
+
+  useEffect(() => {
+    if (user) {
+      document.title = `${user}'s To-Dos'`;
+    } else {
+      document.title = `To-Dos`;
+    }
+  }, [user]);
 
   return (
     <div>
