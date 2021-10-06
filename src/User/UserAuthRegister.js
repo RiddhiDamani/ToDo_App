@@ -8,14 +8,13 @@ export default function UserAuthRegister({ user, dispatch }) {
     return (
       <div>
         <Logout user={user} dispatch={dispatch} />
-        <hr />
       </div>
     );
   } else {
     return (
       <div>
         <Login dispatch={dispatch} />
-        <br></br>
+        <hr />
         <Register dispatch={dispatch} />
       </div>
     );

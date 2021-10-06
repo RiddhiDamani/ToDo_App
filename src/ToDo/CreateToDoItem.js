@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-//import { v4 as uuidv4 } from "uuid";
 
 export default function CreateToDoItem({ dispatch }) {
   const [title, setTitle] = useState("");
@@ -28,19 +27,22 @@ export default function CreateToDoItem({ dispatch }) {
           Title:
         </label>
         <input
-          className="space"
+          className="titleField"
           type="text"
           value={title}
           onChange={handleTitle}
           name="create-todo-title"
           id="create-todo-title"
           required
+          autofocus
         ></input>
+        <br></br>
+        <br></br>
         <label className="space" htmlFor="create-todo-description ">
           Description:
         </label>
         <textarea
-          className="space"
+          className="descriptionField"
           value={description}
           onChange={handleDescription}
         ></textarea>

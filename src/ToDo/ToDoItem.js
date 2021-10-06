@@ -10,7 +10,7 @@ export default function ToDoItem({
   dispatch,
 }) {
   function handleChecked(e) {
-    console.log(e.target.checked);
+    //console.log(e.target.checked);
     if (e.target.checked) {
       complete = true;
     } else {
@@ -39,20 +39,10 @@ export default function ToDoItem({
             onChange={handleChecked}
             checked={complete}
           />
+          <strong>Date Completed:</strong>
+          {complete && <text> {dateCompleted} </text>}
         </span>
         <br />
-        {complete && (
-          <span>
-            <strong>Date Completed:</strong>
-            <text> {dateCompleted} </text>
-          </span>
-        )}
-        {!complete && (
-          <span>
-            <strong>Date Completed:</strong>
-            <text> {dateCompleted} </text>
-          </span>
-        )}
         <br />
         <span>
           <strong>Title: </strong>
@@ -67,8 +57,8 @@ export default function ToDoItem({
         <span>
           <strong>Date Created:</strong> {dateCreated}
         </span>
-        <br />
-        <br />
+        <br></br>
+        <br></br>
         <button
           onClick={(e) => {
             dispatch({ type: "DELETE_TODO", index });

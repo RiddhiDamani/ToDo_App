@@ -1,3 +1,18 @@
 .space {
   margin-left: 1%;
 }
+
+.registerSpace {
+  margin-left: 3%;
+}
+
+.titleField {
+  margin-left: 3%;
+  width: 20%;
+}
+
+.descriptionField {
+  margin-left: 0.5%;
+  width: 20%;
+  height: 20%;
+}

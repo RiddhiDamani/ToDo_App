@@ -19,13 +19,19 @@ export default function Login({ dispatch }) {
         type="text"
         name="login-username"
         id="login-username"
+        className="space"
         value={formData.username}
         onChange={(e) => setFormData({ ...formData, username: e.target.value })}
       ></input>
       <br></br>
       <br></br>
       <label htmlFor="login-password">Password:</label>
-      <input type="password" name="login-password" id="login-password"></input>
+      <input
+        className="space"
+        type="password"
+        name="login-password"
+        id="login-password"
+      ></input>
       <br></br>
       <br></br>
       <input
@@ -35,9 +41,6 @@ export default function Login({ dispatch }) {
       ></input>
       <br></br>
       <br></br>
-      <label>
-        New User? <b> Please Register Below </b>
-      </label>
     </form>
   );
 }

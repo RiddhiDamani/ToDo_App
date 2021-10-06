@@ -19,8 +19,14 @@ export default function Register({ dispatch }) {
         });
       }}
     >
+      <label>
+        New User? <b> Please Register Below </b>
+      </label>
+      <br></br>
+      <br></br>
       <label htmlFor="register-username">Username: </label>
       <input
+        className="registerSpace"
         type="text"
         name="register-username"
         id="register-username"
@@ -31,6 +37,7 @@ export default function Register({ dispatch }) {
       <br></br>
       <label htmlFor="register-password">Password: </label>
       <input
+        className="registerSpace"
         type="password"
         name="register-password"
         id="register-password"
