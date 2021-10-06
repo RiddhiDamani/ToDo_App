@@ -4,9 +4,11 @@ import ToDoItem from "./ToDoItem";
 export default function ToDoList({ todos = [], dispatch }) {
   return (
     <div>
-      {todos.map((todo, i) => (
-        <ToDoItem {...todo} index={i} key={"todo-" + i} dispatch={dispatch} />
-      ))}
+      {todos
+        .sort((item1, item2) => (item1.index < item2.index ? 1 : -1))
+        .map((todo, i) => (
+          <ToDoItem {...todo} key={"todo-" + i} dispatch={dispatch} />
+        ))}
     </div>
   );
 }
