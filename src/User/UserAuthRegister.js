@@ -1,21 +1,25 @@
-import React from "react";
+import React, { useContext } from "react";
 import Login from "./Login.js";
 import Logout from "./Logout.js";
 import Register from "./Register.js";
+import { StateContext } from "../Contexts.js";
 
-export default function UserAuthRegister({ user, dispatch }) {
+export default function UserAuthRegister() {
+  const { state } = useContext(StateContext);
+  const { user } = state;
+
   if (user) {
     return (
       <div>
-        <Logout user={user} dispatch={dispatch} />
+        <Logout />
       </div>
     );
   } else {
     return (
       <div>
-        <Login dispatch={dispatch} />
+        <Login />
         <hr />
-        <Register dispatch={dispatch} />
+        <Register />
       </div>
     );
   }

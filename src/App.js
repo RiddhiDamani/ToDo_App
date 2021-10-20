@@ -5,14 +5,17 @@ import CreateToDoItem from "./ToDo/CreateToDoItem.js";
 import ToDoList from "./ToDo/ToDoList.js";
 import "./App.css";
 import appReducer from "./reducers.js";
+import { StateContext } from "./Contexts.js";
 
 function App() {
   const initialToDos = [];
+
   const [state, dispatch] = useReducer(appReducer, {
     user: "",
     todos: initialToDos,
   });
-  const { user, todos } = state;
+
+  const { user } = state;
 
   useEffect(() => {
     if (user) {
@@ -24,13 +27,15 @@ function App() {
 
   return (
     <div>
-      <AppHeader />
-      <UserAuthRegister user={user} dispatch={dispatch} />
-      <br />
-      {user && <CreateToDoItem dispatch={dispatch} />}
-      {user && <hr />}
-      {user && <h3>ToDo Lists</h3>}
-      {user && <ToDoList todos={todos} dispatch={dispatch} />}
+      <StateContext.Provider value={{ state: state, dispatch: dispatch }}>
+        <AppHeader />
+        <UserAuthRegister />
+        <br />
+        {user && <CreateToDoItem />}
+        {user && <hr />}
+        {user && <h3>ToDo Lists</h3>}
+        {user && <ToDoList />}
+      </StateContext.Provider>
     </div>
   );
 }

@@ -1,4 +1,5 @@
-import React from "react";
+import React, { useContext } from "react";
+import { StateContext } from "../Contexts";
 
 export default function ToDoItem({
   index,
@@ -7,8 +8,9 @@ export default function ToDoItem({
   dateCreated,
   complete,
   dateCompleted,
-  dispatch,
 }) {
+  const { dispatch } = useContext(StateContext);
+
   function handleChecked(e) {
     //console.log(e.target.checked);
     if (e.target.checked) {

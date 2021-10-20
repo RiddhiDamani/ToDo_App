@@ -1,11 +1,14 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { StateContext } from "../Contexts";
 
-export default function Login({ dispatch }) {
+export default function Login() {
   const [formData, setFormData] = useState({
     username: "",
     password: "",
     passwordRepeat: "",
   });
+
+  const { dispatch } = useContext(StateContext);
 
   return (
     <form
