@@ -6,14 +6,29 @@ import ToDoList from "./ToDo/ToDoList.js";
 import "./App.css";
 import appReducer from "./reducers.js";
 import { StateContext } from "./Contexts.js";
+import { useResource } from "react-request-hook";
 
 function App() {
-  const initialToDos = [];
+  //const initialToDos = [];
+
+  //Define a new useResource Hook, where we request /posts:
+  const [todos, getTodos] = useResource(() => ({
+    url: "/todos",
+    method: "get",
+  }));
 
   const [state, dispatch] = useReducer(appReducer, {
     user: "",
-    todos: initialToDos,
+    todos: [],
   });
+
+  useEffect(getTodos, []);
+
+  useEffect(() => {
+    if (todos && todos.data) {
+      dispatch({ type: "FETCH_TODOS", todos: todos.data });
+    }
+  }, [todos]);
 
   const { user } = state;
 

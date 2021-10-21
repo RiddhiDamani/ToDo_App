@@ -39,6 +39,8 @@ function todoReducer(state, action) {
       return state.filter((todo) => todo.index !== action.index);
     case "CLEAR_TODOLIST":
       return [];
+    case "FETCH_TODOS":
+      return action.todos;
     default:
       return state;
   }
