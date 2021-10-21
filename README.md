@@ -23,3 +23,16 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
    npm start - This runs the app in the development mode.
 
 5. To view it in the browser - Open [http://localhost:3000](http://localhost:3000)
+
+### REST APIs
+
+| Request Type | API                                             | Description    |
+| ------------ | ----------------------------------------------- | -------------- |
+| GET          | http://localhost:4000/todos                     | Retrieve ToDos |
+| POST         | http://localhost:4000/todos                     | Create ToDo    |
+| GET          | http://localhost:4000/todos/{id}                | Retrieve ToDo  |
+| PUT          | http://localhost:4000/todos/{id}                | Update ToDo    |
+| PATCH        | http://localhost:4000/todos/{id}                | Update ToDo    |
+| DELETE       | http://localhost:4000/todos/{id}                | Delete ToDo    |
+| GET          | http://localhost:4000/users                     | Retrieve Users |
+| GET          | http://localhost:4000/login/{userid}/{password} | Perform Login  |

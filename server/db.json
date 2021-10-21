@@ -1,0 +1,35 @@
+{
+  "todos": [
+    {
+      "id": 1,
+      "title": "Do Laundry",
+      "description": "Wash, dry, and fold",
+      "dateCreated": "10-10-2021",
+      "complete": false,
+      "dateCompleted": null
+    },
+    {
+      "id": 2,
+      "title": "Pay Electricity Bills",
+      "description": "Car, Electric, Gas",
+      "dateCreated": "10-10-2020",
+      "complete": false,
+      "dateCompleted": null
+    },
+    {
+      "id": 3,
+      "title": "Learn ReactJS",
+      "description": "Learn it regularly",
+      "dateCreated": "10-11-2021",
+      "complete": true,
+      "dateCompleted": "10-30-2021"
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "riddhi",
+      "password": "password"
+    }
+  ]
+}
