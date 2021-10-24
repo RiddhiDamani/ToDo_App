@@ -25,16 +25,22 @@
       "dateCompleted": null
     },
     {
-      "title": "Learn Spring",
-      "description": "Okay!",
-      "dateCreated": "Sun Oct 24 2021 16:13:25 ",
+      "title": "Learn Python",
+      "description": "Okay",
+      "dateCreated": "Sun Oct 24 2021 17:54:30 ",
       "id": 4
     },
     {
-      "title": "Learn HTML5",
-      "description": "Okay!",
-      "dateCreated": "Sun Oct 24 2021 16:16:18 ",
+      "title": "Learn CSS3",
+      "description": "styling",
+      "dateCreated": "Sun Oct 24 2021 17:54:44 ",
       "id": 5
+    },
+    {
+      "title": "Learn MongoDB",
+      "description": "DB concepts",
+      "dateCreated": "Sun Oct 24 2021 17:55:02 ",
+      "id": 6
     }
   ],
   "users": [

@@ -31,7 +31,7 @@ export default function CreateToDoItem() {
   useEffect(() => {
     // if todos.data contains a value - it indicates that the request is complete and we
     // have recieved data back from the server.
-    if (todos && todos.data) {
+    if (todos && todos.isLoading === false && todos.data) {
       dispatch({
         type: "CREATE_TODO",
         title: todos.data.title,
