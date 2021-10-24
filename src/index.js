@@ -13,7 +13,6 @@ ReactDOM.render(
     <RequestProvider value={axiosInstance}>
       <App />
     </RequestProvider>
-    ,
   </React.StrictMode>,
   document.getElementById("root")
 );

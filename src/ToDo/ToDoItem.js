@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StateContext } from "../Contexts";
 
 export default function ToDoItem({
-  id,
+  todoId,
   title,
   description,
   dateCreated,
@@ -12,7 +12,6 @@ export default function ToDoItem({
   const { dispatch } = useContext(StateContext);
 
   function handleChecked(e) {
-    //console.log(e.target.checked);
     if (e.target.checked) {
       complete = true;
     } else {
@@ -22,7 +21,7 @@ export default function ToDoItem({
       complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
     dispatch({
       type: "TOGGLE_TODO",
-      id,
+      todoId,
       title,
       description,
       dateCreated,
@@ -38,7 +37,7 @@ export default function ToDoItem({
           <input
             type="checkbox"
             name="checkbox"
-            onChange={handleChecked}
+            onClick={handleChecked}
             checked={complete}
           />
           <strong>Date Completed:</strong>
@@ -63,7 +62,7 @@ export default function ToDoItem({
         <br></br>
         <button
           onClick={(e) => {
-            dispatch({ type: "DELETE_TODO", id });
+            dispatch({ type: "DELETE_TODO", todoId });
           }}
         >
           DELETE

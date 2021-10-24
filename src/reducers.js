@@ -1,4 +1,4 @@
-import nextId from "react-id-generator";
+//import nextId from "react-id-generator";
 
 function userReducer(state, action) {
   switch (action.type) {
@@ -16,7 +16,7 @@ function todoReducer(state, action) {
   switch (action.type) {
     case "CREATE_TODO":
       const newToDo = {
-        id: nextId(),
+        id: action.id,
         title: action.title,
         description: action.description,
         dateCreated: action.dateCreated,
@@ -25,18 +25,16 @@ function todoReducer(state, action) {
       };
       return [newToDo, ...state];
     case "TOGGLE_TODO":
-      const updatedToDo = {
-        id: action.id,
-        title: action.title,
-        description: action.description,
-        dateCreated: action.dateCreated,
-        complete: action.complete,
-        dateCompleted: action.dateCompleted,
-      };
-      const oldToDo = state.filter((todo) => todo.id !== action.id);
-      return [...oldToDo, updatedToDo];
+      return state.map((t, i) => {
+        if (i === action.todoId) {
+          t.complete = action.complete;
+          t.dateCompleted = action.dateCompleted;
+          //console.log(t);
+        }
+        return t;
+      });
     case "DELETE_TODO":
-      return state.filter((todo) => todo.id !== action.id);
+      return state.filter((todo, i) => i !== action.todoId);
     case "CLEAR_TODOLIST":
       return [];
     case "FETCH_TODOS":

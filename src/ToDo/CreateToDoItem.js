@@ -29,7 +29,7 @@ export default function CreateToDoItem() {
   }
 
   useEffect(() => {
-    // if post.data contains a value - it indicates that the request is complete and we
+    // if todos.data contains a value - it indicates that the request is complete and we
     // have recieved data back from the server.
     if (todos && todos.data) {
       dispatch({
