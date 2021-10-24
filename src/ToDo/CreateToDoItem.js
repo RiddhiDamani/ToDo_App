@@ -1,27 +1,59 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { StateContext } from "../Contexts";
+import { useResource } from "react-request-hook";
 
 export default function CreateToDoItem() {
+  const { dispatch } = useContext(StateContext);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dateCreated, setDateCreated] = useState("");
 
-  const { dispatch } = useContext(StateContext);
+  //Passing object into a createPost call
+  const [todos, createToDo] = useResource(
+    ({ title, description, dateCreated, complete, dateCompleted }) => ({
+      url: "/todos",
+      method: "post",
+      data: { title, description, dateCreated, complete, dateCompleted },
+    })
+  );
 
+  // setting the title
   function handleTitle(e) {
     setTitle(e.target.value);
     setDateCreated(Date(Date.now()).toString().slice(0, 25));
   }
 
+  // setting the description
   function handleDescription(e) {
     setDescription(e.target.value);
+  }
+
+  useEffect(() => {
+    // if post.data contains a value - it indicates that the request is complete and we
+    // have recieved data back from the server.
+    if (todos && todos.data) {
+      dispatch({
+        type: "CREATE_TODO",
+        title: todos.data.title,
+        description: todos.data.description,
+        dateCreated: todos.data.dateCreated,
+        complete: todos.data.complete,
+        dateCompleted: todos.data.dateCompleted,
+        id: todos.data.id,
+      });
+    }
+  }, [todos]);
+
+  function handleCreate() {
+    // create post is a network request. AXIOS will fire this network request asynchronously
+    createToDo({ title, description, dateCreated });
   }
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch({ type: "CREATE_TODO", title, description, dateCreated });
+        handleCreate();
       }}
     >
       <div>

@@ -2,7 +2,7 @@ import React, { useContext } from "react";
 import { StateContext } from "../Contexts";
 
 export default function ToDoItem({
-  index,
+  id,
   title,
   description,
   dateCreated,
@@ -22,7 +22,7 @@ export default function ToDoItem({
       complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
     dispatch({
       type: "TOGGLE_TODO",
-      index,
+      id,
       title,
       description,
       dateCreated,
@@ -63,7 +63,7 @@ export default function ToDoItem({
         <br></br>
         <button
           onClick={(e) => {
-            dispatch({ type: "DELETE_TODO", index });
+            dispatch({ type: "DELETE_TODO", id });
           }}
         >
           DELETE
