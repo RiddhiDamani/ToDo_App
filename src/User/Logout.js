@@ -3,7 +3,6 @@ import { StateContext } from "../Contexts";
 
 export default function Logout() {
   const { state, dispatch } = useContext(StateContext);
-
   const { user } = state;
 
   return (
@@ -11,7 +10,6 @@ export default function Logout() {
       onSubmit={(e) => {
         e.preventDefault();
         dispatch({ type: "LOGOUT" });
-        dispatch({ type: "CLEAR_TODOLIST" });
       }}
     >
       Logged in as: <b>{user}</b>

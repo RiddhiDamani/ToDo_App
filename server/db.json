@@ -42,6 +42,11 @@
       "id": 1,
       "username": "riddhi",
       "password": "password"
+    },
+    {
+      "username": "mayank",
+      "password": "radhe",
+      "id": 2
     }
   ]
 }

@@ -1,5 +1,3 @@
-//import nextId from "react-id-generator";
-
 function userReducer(state, action) {
   switch (action.type) {
     case "LOGIN":
@@ -35,8 +33,6 @@ function todoReducer(state, action) {
       });
     case "DELETE_TODO":
       return state.filter((todo, i) => i !== action.todoId);
-    case "CLEAR_TODOLIST":
-      return [];
     case "FETCH_TODOS":
       return action.todos;
     default:

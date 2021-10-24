@@ -1,5 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { StateContext } from "../Contexts";
+import { useResource } from "react-request-hook";
 
 export default function Register() {
   const [formData, setFormData] = useState({
@@ -8,18 +9,25 @@ export default function Register() {
     passwordRepeat: "",
   });
 
+  const [user, register] = useResource((username, password) => ({
+    url: "/users",
+    method: "post",
+    data: { username, password },
+  }));
+
   const { dispatch } = useContext(StateContext);
+
+  useEffect(() => {
+    if (user && user.data) {
+      dispatch({ type: "REGISTER", username: user.data.username });
+    }
+  }, [user]);
 
   return (
     <form
       onSubmit={(e) => {
         e.preventDefault();
-        dispatch({
-          type: "REGISTER",
-          username: formData.username,
-          password: formData.password,
-          passwordRepeat: formData.passwordRepeat,
-        });
+        register(formData.username, formData.password);
       }}
     >
       <label>
