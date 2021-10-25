@@ -1,8 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { StateContext } from "../Contexts";
+import { useResource } from "react-request-hook";
 
 export default function ToDoItem({
-  todoId,
+  id,
   title,
   description,
   dateCreated,
@@ -10,6 +11,16 @@ export default function ToDoItem({
   dateCompleted,
 }) {
   const { dispatch } = useContext(StateContext);
+  const [todos, deleteToDo] = useResource(() => ({
+    url: `/todos/${id}`,
+    method: "delete",
+  }));
+
+  useEffect(() => {
+    if (todos && todos.data !== undefined) {
+      dispatch({ type: "DELETE_TODO", id });
+    }
+  }, [todos]);
 
   function handleChecked(e) {
     if (e.target.checked) {
@@ -21,7 +32,7 @@ export default function ToDoItem({
       complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
     dispatch({
       type: "TOGGLE_TODO",
-      todoId,
+      id,
       title,
       description,
       dateCreated,
@@ -29,6 +40,10 @@ export default function ToDoItem({
       dateCompleted,
     });
   }
+
+  const handleDelete = () => {
+    deleteToDo();
+  };
 
   return (
     <div>
@@ -60,13 +75,7 @@ export default function ToDoItem({
         </span>
         <br></br>
         <br></br>
-        <button
-          onClick={(e) => {
-            dispatch({ type: "DELETE_TODO", todoId });
-          }}
-        >
-          DELETE
-        </button>
+        <button onClick={handleDelete}>DELETE</button>
         <hr></hr>
       </div>
     </div>

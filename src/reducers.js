@@ -24,7 +24,7 @@ function todoReducer(state, action) {
       return [newToDo, ...state];
     case "TOGGLE_TODO":
       return state.map((t, i) => {
-        if (i === action.todoId) {
+        if (i === action.id) {
           t.complete = action.complete;
           t.dateCompleted = action.dateCompleted;
           //console.log(t);
@@ -32,7 +32,7 @@ function todoReducer(state, action) {
         return t;
       });
     case "DELETE_TODO":
-      return state.filter((todo, i) => i !== action.todoId);
+      return state.filter((t) => t.id !== action.id);
     case "FETCH_TODOS":
       return action.todos;
     default:

@@ -1,46 +1,10 @@
 {
   "todos": [
     {
-      "id": 1,
-      "title": "Do Laundry",
-      "description": "Wash, dry, and fold",
-      "dateCreated": "10-10-2021",
-      "complete": false,
-      "dateCompleted": null
-    },
-    {
-      "id": 2,
-      "title": "Pay Electricity Bills",
-      "description": "Car, Electric, Gas",
-      "dateCreated": "10-10-2020",
-      "complete": false,
-      "dateCompleted": null
-    },
-    {
-      "id": 3,
-      "title": "Learn React Hooks",
-      "description": "From the reactjs website",
-      "dateCreated": "10-11-2021",
-      "complete": false,
-      "dateCompleted": null
-    },
-    {
-      "title": "Learn Python",
-      "description": "Okay",
-      "dateCreated": "Sun Oct 24 2021 17:54:30 ",
-      "id": 4
-    },
-    {
-      "title": "Learn CSS3",
-      "description": "styling",
-      "dateCreated": "Sun Oct 24 2021 17:54:44 ",
-      "id": 5
-    },
-    {
-      "title": "Learn MongoDB",
-      "description": "DB concepts",
-      "dateCreated": "Sun Oct 24 2021 17:55:02 ",
-      "id": 6
+      "title": "Read Novel",
+      "description": "asasasa",
+      "dateCreated": "Sun Oct 24 2021 22:12:21 ",
+      "id": 3
     }
   ],
   "users": [
@@ -50,9 +14,9 @@
       "password": "password"
     },
     {
+      "id": 2,
       "username": "mayank",
-      "password": "radhe",
-      "id": 2
+      "password": "radhe"
     }
   ]
 }

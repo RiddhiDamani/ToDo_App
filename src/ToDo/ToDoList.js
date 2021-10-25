@@ -7,8 +7,8 @@ export default function ToDoList() {
   const { todos } = state;
   return (
     <div>
-      {todos.map((todo, i) => (
-        <ToDoItem {...todo} key={"todo-" + i} todoId={i} />
+      {todos.map((todo) => (
+        <ToDoItem key={todo.id} {...todo} />
       ))}
     </div>
   );
