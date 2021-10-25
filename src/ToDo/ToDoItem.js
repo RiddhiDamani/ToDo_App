@@ -11,10 +11,19 @@ export default function ToDoItem({
   dateCompleted,
 }) {
   const { dispatch } = useContext(StateContext);
+
   const [todos, deleteToDo] = useResource(() => ({
     url: `/todos/${id}`,
     method: "delete",
   }));
+
+  const [updateTodo, updateToDo] = useResource(
+    ({ complete, dateCompleted }) => ({
+      url: `/todos/${id}`,
+      method: "patch",
+      data: { complete, dateCompleted },
+    })
+  );
 
   useEffect(() => {
     if (todos && todos.data !== undefined) {
@@ -22,27 +31,43 @@ export default function ToDoItem({
     }
   }, [todos]);
 
-  function handleChecked(e) {
-    if (e.target.checked) {
-      complete = true;
-    } else {
-      complete = false;
+  useEffect(() => {
+    // if todos.data contains a value - it indicates that the request is complete and we
+    // have recieved data back from the server.
+    if (updateTodo && updateTodo.isLoading === false && updateTodo.data) {
+      dispatch({
+        type: "TOGGLE_TODO",
+        complete: updateTodo.data.complete,
+        dateCompleted: updateTodo.data.dateCompleted,
+        id: updateTodo.data.id,
+      });
     }
-    dateCompleted =
-      complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
-    dispatch({
-      type: "TOGGLE_TODO",
-      id,
-      title,
-      description,
-      dateCreated,
-      complete,
-      dateCompleted,
-    });
-  }
+  }, [updateTodo]);
+
+  // function handleChecked(e) {
+  //   // complete = e.target.checked ? true : false;
+  //   // dateCompleted =
+  //   //   complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
+  //   dispatch({
+  //     type: "TOGGLE_TODO",
+  //     id,
+  //     title,
+  //     description,
+  //     dateCreated,
+  //     complete: !complete,
+  //     dateCompleted,
+  //   });
+  // }
 
   const handleDelete = () => {
     deleteToDo();
+  };
+
+  const handleChecked = (e) => {
+    complete = e.target.checked ? true : false;
+    dateCompleted =
+      complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
+    updateToDo({ complete: e.target.checked, dateCompleted: dateCompleted });
   };
 
   return (

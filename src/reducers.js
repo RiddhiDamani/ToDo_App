@@ -23,13 +23,15 @@ function todoReducer(state, action) {
       };
       return [newToDo, ...state];
     case "TOGGLE_TODO":
-      return state.map((t, i) => {
-        if (i === action.id) {
-          t.complete = action.complete;
-          t.dateCompleted = action.dateCompleted;
-          //console.log(t);
+      return state.map((t) => {
+        const updatedToDo = t;
+        if (t.id === action.id) {
+          updatedToDo.complete = action.complete;
+          updatedToDo.dateCompleted = action.dateCompleted;
+          //  console.log(t);
+          //  console.log(updatedToDo);
         }
-        return t;
+        return updatedToDo;
       });
     case "DELETE_TODO":
       return state.filter((t) => t.id !== action.id);

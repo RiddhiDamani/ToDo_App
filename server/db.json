@@ -1,9 +1,25 @@
 {
   "todos": [
     {
-      "title": "Read Novel",
-      "description": "asasasa",
-      "dateCreated": "Sun Oct 24 2021 22:12:21 ",
+      "title": "Learn ReactJS",
+      "description": "Hooks and States",
+      "dateCreated": "Mon Oct 25 2021 00:34:15 ",
+      "id": 1,
+      "complete": false,
+      "dateCompleted": null
+    },
+    {
+      "title": "Learn BootStrap",
+      "description": "Containers and Flex displays",
+      "dateCreated": "Mon Oct 25 2021 00:34:24 ",
+      "id": 2,
+      "complete": true,
+      "dateCompleted": "Mon Oct 25 2021 00:35:43 "
+    },
+    {
+      "title": "Learn Python",
+      "description": "Tkinter module",
+      "dateCreated": "Mon Oct 25 2021 00:34:56 ",
       "id": 3
     }
   ],
@@ -17,6 +33,11 @@
       "id": 2,
       "username": "mayank",
       "password": "radhe"
+    },
+    {
+      "username": "karuna",
+      "password": "radhe",
+      "id": 3
     }
   ]
 }
