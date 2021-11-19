@@ -21,6 +21,7 @@ export default function Register() {
     if (user && user.data) {
       dispatch({ type: "REGISTER", username: user.data.username });
     }
+    // eslint-disable-next-line
   }, [user]);
 
   return (

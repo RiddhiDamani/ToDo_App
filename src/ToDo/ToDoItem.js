@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { StateContext } from "../Contexts";
 import { useResource } from "react-request-hook";
 
-export default function ToDoItem({
+function ToDoItem({
   id,
   title,
   description,
@@ -29,6 +29,7 @@ export default function ToDoItem({
     if (todos && todos.data !== undefined) {
       dispatch({ type: "DELETE_TODO", id });
     }
+    // eslint-disable-next-line
   }, [todos]);
 
   useEffect(() => {
@@ -42,22 +43,8 @@ export default function ToDoItem({
         id: updateTodo.data.id,
       });
     }
+    // eslint-disable-next-line
   }, [updateTodo]);
-
-  // function handleChecked(e) {
-  //   // complete = e.target.checked ? true : false;
-  //   // dateCompleted =
-  //   //   complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
-  //   dispatch({
-  //     type: "TOGGLE_TODO",
-  //     id,
-  //     title,
-  //     description,
-  //     dateCreated,
-  //     complete: !complete,
-  //     dateCompleted,
-  //   });
-  // }
 
   const handleDelete = () => {
     deleteToDo();
@@ -69,6 +56,8 @@ export default function ToDoItem({
       complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
     updateToDo({ complete: e.target.checked, dateCompleted: dateCompleted });
   };
+
+  console.log("ToDo Rendered!");
 
   return (
     <div>
@@ -106,3 +95,5 @@ export default function ToDoItem({
     </div>
   );
 }
+
+export default React.memo(ToDoItem);

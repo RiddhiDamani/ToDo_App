@@ -1,26 +1,22 @@
 import React, { useContext } from "react";
 import Login from "./Login.js";
-import Logout from "./Logout.js";
 import Register from "./Register.js";
 import { StateContext } from "../Contexts.js";
 
 export default function UserAuthRegister() {
+  const Logout = React.lazy(() => import("./Logout"));
   const { state } = useContext(StateContext);
   const { user } = state;
 
   if (user) {
-    return (
-      <div>
-        <Logout />
-      </div>
-    );
+    return <Logout />;
   } else {
     return (
-      <div>
+      <>
         <Login />
         <hr />
         <Register />
-      </div>
+      </>
     );
   }
 }

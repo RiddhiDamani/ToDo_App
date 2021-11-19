@@ -30,6 +30,7 @@ export default function Login() {
         setLoginFailed(true);
       }
     }
+    // eslint-disable-next-line
   }, [user]);
 
   return (

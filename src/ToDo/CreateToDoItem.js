@@ -42,6 +42,7 @@ export default function CreateToDoItem() {
         id: todos.data.id,
       });
     }
+    // eslint-disable-next-line
   }, [todos]);
 
   function handleCreate() {
