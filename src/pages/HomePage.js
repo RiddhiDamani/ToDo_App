@@ -2,6 +2,7 @@ import React, { useEffect, useContext } from "react";
 import { StateContext } from "../Contexts";
 import { useResource } from "react-request-hook";
 import ToDoList from "../todo/ToDoList.js";
+import CreateToDoItem from "../todo/CreateToDoItem.js";
 
 export default function HomePage() {
   const { state, dispatch } = useContext(StateContext);
@@ -42,8 +43,10 @@ export default function HomePage() {
 
   return (
     <>
+      <CreateToDoItem />
+      <hr />
       {user && <h3>ToDo Lists</h3>}
-      {isLoading && "ToDos loading..."} <ToDoList />
+      {user && isLoading && "ToDos loading..."} <ToDoList />
     </>
   );
 }
