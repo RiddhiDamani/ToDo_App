@@ -10,7 +10,7 @@ import { mount, route } from "navi";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, {
-    user: "",
+    user: {},
     todos: [],
   });
 
@@ -24,8 +24,8 @@ function App() {
   });
 
   useEffect(() => {
-    if (user) {
-      document.title = `${user}'s To-Dos'`;
+    if (user.username) {
+      document.title = `${user.username}'s To-Dos'`;
     } else {
       document.title = `To-Dos`;
     }

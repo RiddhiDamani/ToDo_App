@@ -45,8 +45,8 @@ export default function HomePage() {
     <>
       <CreateToDoItem />
       <hr />
-      {user && <h3>ToDo Lists</h3>}
-      {user && isLoading && "ToDos loading..."} <ToDoList />
+      {user.username && <h3>ToDo Lists</h3>}
+      {user.username && isLoading && "ToDos loading..."} <ToDoList />
     </>
   );
 }

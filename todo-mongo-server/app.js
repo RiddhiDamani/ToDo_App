@@ -2,6 +2,7 @@ var express = require("express");
 var path = require("path");
 var logger = require("morgan");
 
+require("dotenv").config();
 require("./models/setupMongo")();
 
 var todoRouter = require("./routes/todos");

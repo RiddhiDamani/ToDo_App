@@ -1,18 +1,22 @@
 import React, { useContext, useState, useEffect } from "react";
 import { StateContext } from "../Contexts";
 import { useResource } from "react-request-hook";
+import { useNavigation } from "react-navi";
 
 export default function CreateToDoItem() {
-  const { dispatch } = useContext(StateContext);
+  const { state, dispatch } = useContext(StateContext);
+  const { user } = state;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dateCreated, setDateCreated] = useState("");
+  const navigation = useNavigation();
 
   //Passing object into a createPost call
   const [todos, createToDo] = useResource(
     ({ title, description, dateCreated, complete, dateCompleted }) => ({
       url: "/todos",
       method: "post",
+      headers: { Authorization: `${state.user.access_token}` },
       data: { title, description, dateCreated, complete, dateCompleted },
     })
   );
@@ -41,6 +45,8 @@ export default function CreateToDoItem() {
         dateCompleted: todos.data.dateCompleted,
         id: todos.data.id,
       });
+      console.log(todos.data);
+      navigation.navigate(`/todo/${todos.data.id}`);
     }
     // eslint-disable-next-line
   }, [todos]);

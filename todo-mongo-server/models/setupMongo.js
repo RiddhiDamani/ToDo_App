@@ -1,6 +1,5 @@
 const mongoose = require("mongoose");
-const uri =
-  "mongodb+srv://admin:Y0gDDHkWmjaFsxOz@cluster0.pofgh.mongodb.net/todoApp?retryWrites=true&w=majority";
+const uri = process.env.DB_URI;
 
 function connect() {
   const options = {

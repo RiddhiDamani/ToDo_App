@@ -5,7 +5,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 const User = require("../models/User");
 const saltRounds = 10;
-const privateKey = ``;
+const privateKey = process.env.JWT_PRIVATE_KEY;
 
 // Router-level middleware - Performs hash on plain text password
 router.use(function (req, res, next) {
@@ -38,11 +38,14 @@ router.post("/login", async function (req, res, next) {
         .compare(req.body.password, user.password)
         .then((result) => {
           if (result === true) {
-            // replace `pretend_user_id` with actual user id
             const token = jwt.sign({ id: user._id }, privateKey, {
               algorithm: "RS256",
             });
-            return res.status(200).json({ access_token: token });
+            return res.status(200).json({
+              id: user._id,
+              username: result.username,
+              access_token: token,
+            });
           } else {
             return res.status(401).json({ error: "Invalid Credentials!" });
           }
@@ -61,23 +64,25 @@ router.post("/register", async function (req, res, next) {
       const user = new User({
         username: req.body.username,
         password: req.hashedPassword,
+        access_token: req.access_token,
       });
 
-      await user
+      return await user
         .save()
         .then((savedUser) => {
           return res.status(201).json({
             id: savedUser._id,
             username: savedUser.username,
+            access_token: savedUser.access_token,
           });
         })
         .catch((error) => {
           return res.status(500).json({ error: error.message });
         });
     }
-    //res.status(400).json({ error: "Passwords not matching!" });
+    res.status(400).json({ error: "Passwords not matching!" });
   } else {
-    return res.status(400).json({ error: "Username or Password Missing!" });
+    res.status(400).json({ error: "Username or Password Missing!" });
   }
 });
 module.exports = router;

@@ -1,10 +1,13 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # dependencies
-/node_modules
+/todo-react-client/node_modules
 /.pnp
 .pnp.js
 /todo-mongo-server/node_modules
+/todo-mongo-server/.env
+/todo-mongo-server/.env.test
+/todo-mongo-server/.env.production
 
 # testing
 /coverage

@@ -8,7 +8,7 @@ export default function UserAuthRegister() {
   const { state } = useContext(StateContext);
   const { user } = state;
 
-  if (user) {
+  if (user.username) {
     return <Logout />;
   } else {
     return (

@@ -14,7 +14,7 @@
     "react-id-generator": "^3.0.2",
     "react-navi": "^0.14.4",
     "react-request-hook": "^2.1.1",
-    "react-scripts": "^3.4.4",
+    "react-scripts": "^4.0.3",
     "uuid": "^8.3.2"
   },
   "scripts": {
