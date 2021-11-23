@@ -2,7 +2,9 @@ import React, { useEffect, useContext } from "react";
 import { StateContext } from "../Contexts";
 import { useResource } from "react-request-hook";
 import ToDoList from "../todo/ToDoList.js";
-import CreateToDoItem from "../todo/CreateToDoItem.js";
+//import CreateToDoItem from "../todo/CreateToDoItem.js";
+import { Link } from "react-navi";
+import { Container } from "react-bootstrap";
 
 export default function HomePage() {
   const { state, dispatch } = useContext(StateContext);
@@ -23,6 +25,7 @@ export default function HomePage() {
   }));
 
   //useEffect(getPosts, []);
+  // eslint-disable-next-line
   useEffect(getTodos, []);
 
   //   useEffect(() => {
@@ -43,10 +46,21 @@ export default function HomePage() {
 
   return (
     <>
-      <CreateToDoItem />
-      <hr />
-      {user.username && <h3>ToDo Lists</h3>}
-      {user.username && isLoading && "ToDos loading..."} <ToDoList />
+      <Container>
+        <br />
+        {user && (
+          <Link href="/todo/create" style={{ marginLeft: "1%" }}>
+            Create New ToDo Item
+          </Link>
+        )}
+        <br />
+        <br />
+        {user && <h3 style={{ marginLeft: "1%" }}>ToDo Lists</h3>}
+        {user && isLoading && "ToDos loading..."}{" "}
+        <div style={{ marginLeft: "1%" }}>
+          <ToDoList />
+        </div>
+      </Container>
     </>
   );
 }

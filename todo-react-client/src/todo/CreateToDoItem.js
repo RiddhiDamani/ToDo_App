@@ -2,10 +2,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { StateContext } from "../Contexts";
 import { useResource } from "react-request-hook";
 import { useNavigation } from "react-navi";
+import AppHeader from "../AppHeader";
+import { Form, Button } from "react-bootstrap";
 
 export default function CreateToDoItem() {
   const { state, dispatch } = useContext(StateContext);
-  const { user } = state;
+  //const { user } = state;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dateCreated, setDateCreated] = useState("");
@@ -16,7 +18,7 @@ export default function CreateToDoItem() {
     ({ title, description, dateCreated, complete, dateCompleted }) => ({
       url: "/todos",
       method: "post",
-      headers: { Authorization: `${state.user.access_token}` },
+      // headers: { Authorization: `${state.user.access_token}` },
       data: { title, description, dateCreated, complete, dateCompleted },
     })
   );
@@ -46,7 +48,7 @@ export default function CreateToDoItem() {
         id: todos.data.id,
       });
       console.log(todos.data);
-      navigation.navigate(`/todo/${todos.data.id}`);
+      navigation.navigate(`/`);
     }
     // eslint-disable-next-line
   }, [todos]);
@@ -57,45 +59,45 @@ export default function CreateToDoItem() {
   }
 
   return (
-    <form
-      onSubmit={(e) => {
-        e.preventDefault();
-        handleCreate();
-      }}
-    >
-      <div>
-        <h3>ToDo Form</h3>
-        <label className="space" htmlFor="create-todo-title">
-          Title:
-        </label>
-        <input
-          className="titleField"
-          type="text"
-          value={title}
-          onChange={handleTitle}
-          name="create-todo-title"
-          id="create-todo-title"
-          required
-          autofocus
-        ></input>
-        <br></br>
-        <br></br>
-        <label className="space" htmlFor="create-todo-description ">
-          Description:
-        </label>
-        <textarea
-          className="descriptionField"
-          value={description}
-          onChange={handleDescription}
-        ></textarea>
-      </div>
-      <br />
-      <input
-        className="space"
-        type="submit"
-        value="Add"
-        disabled={title.length === 0}
-      ></input>
-    </form>
+    <>
+      <AppHeader />
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          handleCreate();
+        }}
+      >
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="create-todo-title">ToDo Title:</Form.Label>
+          <Form.Control
+            type="text"
+            placeholder=""
+            value={title}
+            onChange={handleTitle}
+            name="create-todo-title"
+            id="create-todo-title"
+            required
+          />
+        </Form.Group>
+        <Form.Group className="mb-3">
+          <Form.Label htmlFor="create-todo-description ">
+            ToDo Description:
+          </Form.Label>
+          <Form.Control
+            value={description}
+            onChange={handleDescription}
+            as="textarea"
+            rows={5}
+          />
+        </Form.Group>
+        <Button
+          variant="primary"
+          type="submit"
+          disabled={title.length === 0 || description.length === 0}
+        >
+          Add
+        </Button>
+      </Form>
+    </>
   );
 }

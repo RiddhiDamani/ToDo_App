@@ -57,23 +57,11 @@ function ToDoItem({
     updateToDo({ complete: e.target.checked, dateCompleted: dateCompleted });
   };
 
-  console.log("ToDo Rendered!");
+  //console.log("ToDo Rendered!");
 
   return (
     <div>
       <div>
-        <span>
-          <input
-            type="checkbox"
-            name="checkbox"
-            onClick={handleChecked}
-            checked={complete}
-          />
-          <strong>Date Completed:</strong>
-          {complete && <text> {dateCompleted} </text>}
-        </span>
-        <br />
-        <br />
         <span>
           <strong>Title: </strong>
           {title}
@@ -88,6 +76,16 @@ function ToDoItem({
           <strong>Date Created:</strong> {dateCreated}
         </span>
         <br></br>
+        <span>
+          <input
+            type="checkbox"
+            name="checkbox"
+            onClick={handleChecked}
+            checked={complete}
+          />
+          <strong>Date Completed:</strong>
+          {complete && <> {dateCompleted} </>}
+        </span>
         <br></br>
         <button onClick={handleDelete}>DELETE</button>
         <hr></hr>

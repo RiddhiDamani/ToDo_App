@@ -3,14 +3,14 @@ import "./App.css";
 import HeaderBar from "./pages/HeaderBar.js";
 import appReducer from "./reducers.js";
 import { StateContext } from "./Contexts.js";
-import HomePage from "./pages/HomePage";
-import CreateToDoItem from "./todo/CreateToDoItem";
 import { Router, View } from "react-navi";
 import { mount, route } from "navi";
+import CreateToDoItem from "./todo/CreateToDoItem";
+import { Container } from "react-bootstrap";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, {
-    user: {},
+    user: "",
     todos: [],
   });
 
@@ -18,8 +18,8 @@ function App() {
 
   const routes = mount({
     "/": route({ view: <HeaderBar /> }),
-    "/todo": route({
-      view: <HomePage />,
+    "/todo/create": route({
+      view: <CreateToDoItem />,
     }),
   });
 
@@ -35,9 +35,9 @@ function App() {
     <div>
       <StateContext.Provider value={{ state: state, dispatch: dispatch }}>
         <Router routes={routes}>
-          <div style={{ padding: 8 }}>
+          <Container>
             <View />
-          </div>
+          </Container>
         </Router>
       </StateContext.Provider>
     </div>

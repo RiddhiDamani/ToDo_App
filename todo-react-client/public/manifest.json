@@ -1,6 +1,7 @@
 {
   "short_name": "React App",
   "name": "Create React App Sample",
+  "web_accessible_resources":[],
   "icons": [
     {
       "src": "favicon.ico",
