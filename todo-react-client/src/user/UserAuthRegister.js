@@ -5,6 +5,7 @@ import { Col, Row, Button } from "react-bootstrap";
 import RightSide from "./RightSide.js";
 import Register from "./Register.js";
 import HomePage from "../pages/HomePage.js";
+import { Link } from "react-navi";
 
 export default function UserAuthRegister() {
   const Logout = React.lazy(() => import("./Logout"));
@@ -12,7 +13,7 @@ export default function UserAuthRegister() {
   const { user } = state;
 
   const [showRegister, setShowRegister] = useState(false);
-  //console.log(user);
+
   if (user.username) {
     return (
       <>
@@ -42,6 +43,11 @@ export default function UserAuthRegister() {
                 show={showRegister}
                 handleClose={() => setShowRegister(false)}
               />
+            </div>
+          </Row>
+          <Row>
+            <div className="mb-2" style={{ marginLeft: "31%" }}>
+              <Link href="">Access Registered Users Page</Link>
             </div>
           </Row>
         </Col>

@@ -34,16 +34,22 @@ function todoReducer(state, action) {
     case "TOGGLE_TODO":
       return state.map((t) => {
         const updatedToDo = t;
-        if (t.id === action.id) {
-          updatedToDo.complete = action.complete;
+        console.log(
+          "Inside the TOGGLE_TODO reducer option: ",
+          t._id + " " + action.id
+        );
+        if (t._id === action.id) {
+          // updatedToDo.complete = action.complete;
           updatedToDo.dateCompleted = action.dateCompleted;
         }
         return updatedToDo;
       });
     case "DELETE_TODO":
-      return state.filter((t) => t.id !== action.id);
+      return state.filter((t) => t._id !== action.id);
     case "FETCH_TODOS":
       return action.todos;
+    case "CLEAR_TODOLIST":
+      return [];
     default:
       return state;
   }

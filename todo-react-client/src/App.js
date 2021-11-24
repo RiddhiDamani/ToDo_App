@@ -9,9 +9,10 @@ import CreateToDoItem from "./todo/CreateToDoItem";
 import { Container } from "react-bootstrap";
 
 function App() {
+  const initialToDos = [];
   const [state, dispatch] = useReducer(appReducer, {
     user: {},
-    todos: [],
+    todos: initialToDos,
   });
 
   const { user } = state;

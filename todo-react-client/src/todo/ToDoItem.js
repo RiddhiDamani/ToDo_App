@@ -23,13 +23,15 @@ function ToDoItem({
     },
   }));
 
-  const [updateTodo, updateToDo] = useResource(
-    ({ complete, dateCompleted }) => ({
-      url: `/todo/${_id}`,
-      method: "patch",
-      data: { complete, dateCompleted },
-    })
-  );
+  const [updateTodo, updateToDo] = useResource(({ dateCompleted }) => ({
+    url: `/todo/${_id}`,
+    method: "patch",
+    headers: { Authorization: `${user.access_token}` },
+    data: {
+      username: user.username,
+      dateCompleted,
+    },
+  }));
 
   useEffect(() => {
     if (deletedToDo && deletedToDo.data && deletedToDo.isLoading === false) {
@@ -45,9 +47,9 @@ function ToDoItem({
     if (updateTodo && updateTodo.isLoading === false && updateTodo.data) {
       dispatch({
         type: "TOGGLE_TODO",
-        complete: updateTodo.data.complete,
+        // complete: updateTodo.data.complete,
         dateCompleted: updateTodo.data.dateCompleted,
-        id: updateTodo.data.id,
+        id: updateTodo.data._id,
       });
     }
     // eslint-disable-next-line
@@ -55,14 +57,15 @@ function ToDoItem({
 
   const handleDelete = () => {
     console.log("Trying to delete: ", _id);
-    deleteToDo();
+    deleteToDo(_id);
   };
 
   const handleChecked = (e) => {
     complete = e.target.checked ? true : false;
     dateCompleted =
       complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
-    updateToDo({ complete: e.target.checked, dateCompleted: dateCompleted });
+    updateToDo({ dateCompleted: dateCompleted });
+    //updateToDo({ complete: e.target.checked, dateCompleted: dateCompleted });
   };
 
   return (
@@ -82,10 +85,11 @@ function ToDoItem({
               type="checkbox"
               name="checkbox"
               onClick={handleChecked}
-              checked={complete}
+              checked={dateCompleted ? true : false}
             />
             <strong> Date Completed:</strong>
-            {complete && <> {dateCompleted} </>}
+            {dateCompleted && <> {dateCompleted} </>}
+            {/* {complete && <> {dateCompleted} </>} */}
           </span>
           <br />
         </Card.Text>

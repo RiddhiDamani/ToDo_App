@@ -66,7 +66,7 @@ router.post("/", async function (req, res) {
 });
 
 // DELETE Request
-router.delete("/:id", async function (req, res, next) {
+router.delete("/:_id", async function (req, res, next) {
   console.log(
     "------------------------Inside Delete Request------------------------"
   );
@@ -74,11 +74,28 @@ router.delete("/:id", async function (req, res, next) {
   //console.log(req.params.id);
   //console.log(req.body);
   if (req.body.username) {
-    const todo = await Todo.findByIdAndRemove(req.params.id).exec();
+    const todo = await Todo.findByIdAndRemove(req.params._id).exec();
     console.log("GOT A DELETE REQ");
     return res.status(200).json(todo);
   }
   res.status(400).json({ error: "Missing username or userid in req body" });
+});
+
+// PATCH Request
+router.patch("/:_id", async function (req, res, next) {
+  console.log(
+    "------------------------Inside PATCH Request------------------------"
+  );
+  console.log(req.body);
+  if (req.body.username) {
+    const todo = await Todo.findByIdAndUpdate(req.params._id, {
+      dateCompleted: req.body.dateCompleted,
+    }).exec();
+    console.log("GOT A TOGGLE REQ");
+    return res.status(200).json(todo);
+  } else {
+    res.status(400).json({ error: "Missing username in request body" });
+  }
 });
 
 module.exports = router;
