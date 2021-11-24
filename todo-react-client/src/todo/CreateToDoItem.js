@@ -7,7 +7,7 @@ import { Form, Button } from "react-bootstrap";
 
 export default function CreateToDoItem() {
   const { state, dispatch } = useContext(StateContext);
-  //const { user } = state;
+  const { user } = state;
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [dateCreated, setDateCreated] = useState("");
@@ -15,11 +15,18 @@ export default function CreateToDoItem() {
 
   //Passing object into a createPost call
   const [todos, createToDo] = useResource(
-    ({ title, description, dateCreated, complete, dateCompleted }) => ({
-      url: "/todos",
+    ({ title, description, dateCreated, complete, dateCompleted, userID }) => ({
+      url: "/todo",
       method: "post",
-      // headers: { Authorization: `${state.user.access_token}` },
-      data: { title, description, dateCreated, complete, dateCompleted },
+      headers: { Authorization: `${user.access_token}` },
+      data: {
+        title,
+        description,
+        dateCreated,
+        complete,
+        dateCompleted,
+        userID,
+      },
     })
   );
 
@@ -34,10 +41,20 @@ export default function CreateToDoItem() {
     setDescription(e.target.value);
   }
 
+  function handleCreate() {
+    // create post is a network request. AXIOS will fire this network request asynchronously
+    createToDo({
+      title,
+      description,
+      dateCreated,
+      userID: user.username,
+    });
+  }
+
   useEffect(() => {
     // if todos.data contains a value - it indicates that the request is complete and we
     // have recieved data back from the server.
-    if (todos && todos.isLoading === false && todos.data) {
+    if (todos && todos.data) {
       dispatch({
         type: "CREATE_TODO",
         title: todos.data.title,
@@ -45,18 +62,13 @@ export default function CreateToDoItem() {
         dateCreated: todos.data.dateCreated,
         complete: todos.data.complete,
         dateCompleted: todos.data.dateCompleted,
-        id: todos.data.id,
+        _id: todos.data._id,
+        userID: todos.data.userID,
       });
-      console.log(todos.data);
       navigation.navigate(`/`);
     }
     // eslint-disable-next-line
   }, [todos]);
-
-  function handleCreate() {
-    // create post is a network request. AXIOS will fire this network request asynchronously
-    createToDo({ title, description, dateCreated });
-  }
 
   return (
     <>

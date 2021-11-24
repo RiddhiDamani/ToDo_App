@@ -2,33 +2,34 @@ function userReducer(state, action) {
   switch (action.type) {
     case "LOGIN":
     case "REGISTER":
-      return action.username;
-    // return {
-    //   username: action.username,
-    //   access_token: action.access_token,
-    // };
+      return {
+        username: action.username,
+        access_token: action.access_token,
+      };
     case "LOGOUT":
-      return "";
-    // return {
-    //   username: undefined,
-    //   access_token: undefined,
-    // };
+      return {
+        username: undefined,
+        access_token: undefined,
+      };
     default:
       return state;
   }
 }
 
 function todoReducer(state, action) {
+  console.log("Action:", action);
   switch (action.type) {
     case "CREATE_TODO":
       const newToDo = {
-        id: action.id,
+        _id: action._id,
         title: action.title,
         description: action.description,
         dateCreated: action.dateCreated,
         complete: false,
         dateCompleted: null,
+        userID: action.userID,
       };
+      //console.log("Inside NEW TODO Reducer -------", newToDo);
       return [newToDo, ...state];
     case "TOGGLE_TODO":
       return state.map((t) => {
@@ -36,8 +37,6 @@ function todoReducer(state, action) {
         if (t.id === action.id) {
           updatedToDo.complete = action.complete;
           updatedToDo.dateCompleted = action.dateCompleted;
-          //  console.log(t);
-          //  console.log(updatedToDo);
         }
         return updatedToDo;
       });

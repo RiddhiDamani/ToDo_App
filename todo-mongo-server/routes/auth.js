@@ -42,8 +42,6 @@ router.post("/login", async function (req, res, next) {
               algorithm: "RS256",
             });
             return res.status(200).json({
-              id: user._id,
-              username: result.username,
               access_token: token,
             });
           } else {
@@ -54,6 +52,9 @@ router.post("/login", async function (req, res, next) {
           return res.status(500).json({ error: error.message });
         });
     }
+    return res.status(401).json({ error: "Invalid credentials." });
+  } else {
+    res.status(400).json({ error: "Username or Password Missing" });
   }
 });
 
@@ -64,16 +65,19 @@ router.post("/register", async function (req, res, next) {
       const user = new User({
         username: req.body.username,
         password: req.hashedPassword,
-        access_token: req.access_token,
       });
 
       return await user
         .save()
         .then((savedUser) => {
+          const token = jwt.sign({ id: user._id }, privateKey, {
+            algorithm: "RS256",
+          });
+          console.log();
           return res.status(201).json({
             id: savedUser._id,
             username: savedUser.username,
-            access_token: savedUser.access_token,
+            access_token: token,
           });
         })
         .catch((error) => {

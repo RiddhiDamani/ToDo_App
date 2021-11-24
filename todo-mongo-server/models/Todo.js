@@ -4,10 +4,11 @@ const Schema = mongoose.Schema;
 
 const TodoSchema = new Schema({
   title: { type: String, required: true },
-  description: { type: String, required: true },
-  dateCreated: { type: Date, required: true },
-  dateCompleted: { type: Date, required: false },
-  id: { type: Schema.Types.ObjectId, ref: "User" },
+  description: { type: String, required: false },
+  dateCreated: { type: String, required: true },
+  dateCompleted: { type: String, required: false },
+  userID: { type: Schema.Types.ObjectId, ref: "User" },
+  //userID: { type: String, ref: "User" },
 });
 
 //Export model

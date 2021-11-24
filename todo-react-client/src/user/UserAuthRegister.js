@@ -13,7 +13,7 @@ export default function UserAuthRegister() {
 
   const [showRegister, setShowRegister] = useState(false);
   //console.log(user);
-  if (user) {
+  if (user.username) {
     return (
       <>
         <Logout />

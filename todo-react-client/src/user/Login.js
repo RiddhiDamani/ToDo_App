@@ -2,6 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { StateContext } from "../Contexts";
 import { useResource } from "react-request-hook";
 import { Form, Button } from "react-bootstrap";
+//import { useNavigation } from "react-navi";
 
 export default function Login() {
   const { dispatch } = useContext(StateContext);
@@ -17,46 +18,45 @@ export default function Login() {
     setPassword(evt.target.value);
   };
 
-  // const [user, login] = useResource((username, password) => ({
-  //   url: "auth/login",
-  //   method: "post",
-  //   data: { username, password },
-  // }));
-
   const [user, login] = useResource((username, password) => ({
-    url: `/login/${encodeURI(username)}/${encodeURI(password)}`,
-    method: "get",
+    url: "auth/login",
+    method: "post",
+    data: { username, password },
   }));
 
-  useEffect(() => {
-    if (user && user.isLoading === false && user.data) {
-      if (user.data.length > 0) {
-        setLoginFailed(false);
-        dispatch({ type: "LOGIN", username: user.data[0].username });
-      } else {
-        setLoginFailed(true);
-      }
-    }
-    // eslint-disable-next-line
-  }, [user]);
+  // const [user, login] = useResource((username, password) => ({
+  //   url: `/login/${encodeURI(username)}/${encodeURI(password)}`,
+  //   method: "get",
+  // }));
 
   // useEffect(() => {
-  //   if (user && user.isLoading === false && (user.data || user.error)) {
-  //     if (user.error) {
-  //       setLoginFailed(true);
-  //       alert("failed");
-  //     } else {
+  //   if (user && user.isLoading === false && user.data) {
+  //     if (user.data.length > 0) {
   //       setLoginFailed(false);
-  //       console.log(user.data);
-  //       dispatch({
-  //         type: "LOGIN",
-  //         username,
-  //         access_token: user.data.access_token,
-  //       });
+  //       dispatch({ type: "LOGIN", username: user.data[0].username });
+  //     } else {
+  //       setLoginFailed(true);
   //     }
   //   }
   //   // eslint-disable-next-line
   // }, [user]);
+
+  useEffect(() => {
+    if (user && user.isLoading === false && (user.data || user.error)) {
+      if (user.error) {
+        setLoginFailed(true);
+        alert("failed");
+      } else {
+        setLoginFailed(false);
+        dispatch({
+          type: "LOGIN",
+          username,
+          access_token: user.data.access_token,
+        });
+      }
+    }
+    // eslint-disable-next-line
+  }, [user]);
 
   return (
     <div>

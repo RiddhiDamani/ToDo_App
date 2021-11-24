@@ -1,36 +1,43 @@
 import React, { useContext, useEffect } from "react";
 import { StateContext } from "../Contexts";
 import { useResource } from "react-request-hook";
+import { Card, Button } from "react-bootstrap";
 
 function ToDoItem({
-  id,
+  _id,
   title,
   description,
   dateCreated,
   complete,
   dateCompleted,
 }) {
-  const { dispatch } = useContext(StateContext);
+  const { state, dispatch } = useContext(StateContext);
+  const { user } = state;
 
-  const [todos, deleteToDo] = useResource(() => ({
-    url: `/todos/${id}`,
+  const [deletedToDo, deleteToDo] = useResource((_id) => ({
+    url: `/todo/${_id}`,
     method: "delete",
+    headers: { Authorization: `${user.access_token}` },
+    data: {
+      username: user.username,
+    },
   }));
 
   const [updateTodo, updateToDo] = useResource(
     ({ complete, dateCompleted }) => ({
-      url: `/todos/${id}`,
+      url: `/todo/${_id}`,
       method: "patch",
       data: { complete, dateCompleted },
     })
   );
 
   useEffect(() => {
-    if (todos && todos.data !== undefined) {
-      dispatch({ type: "DELETE_TODO", id });
+    if (deletedToDo && deletedToDo.data && deletedToDo.isLoading === false) {
+      const deleteToDoId = deletedToDo.data._id;
+      dispatch({ type: "DELETE_TODO", id: deleteToDoId });
     }
     // eslint-disable-next-line
-  }, [todos]);
+  }, [deletedToDo]);
 
   useEffect(() => {
     // if todos.data contains a value - it indicates that the request is complete and we
@@ -47,6 +54,7 @@ function ToDoItem({
   }, [updateTodo]);
 
   const handleDelete = () => {
+    console.log("Trying to delete: ", _id);
     deleteToDo();
   };
 
@@ -57,40 +65,35 @@ function ToDoItem({
     updateToDo({ complete: e.target.checked, dateCompleted: dateCompleted });
   };
 
-  //console.log("ToDo Rendered!");
-
   return (
-    <div>
-      <div>
-        <span>
-          <strong>Title: </strong>
-          {title}
-        </span>
-        <br />
-        <span>
-          <strong>Description: </strong>
-          {description}
-        </span>
-        <br />
-        <span>
-          <strong>Date Created:</strong> {dateCreated}
-        </span>
-        <br></br>
-        <span>
-          <input
-            type="checkbox"
-            name="checkbox"
-            onClick={handleChecked}
-            checked={complete}
-          />
-          <strong>Date Completed:</strong>
-          {complete && <> {dateCompleted} </>}
-        </span>
-        <br></br>
-        <button onClick={handleDelete}>DELETE</button>
-        <hr></hr>
-      </div>
-    </div>
+    <Card>
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>
+          <span>{description}</span>
+          <br />
+          <span>ToDo ID: {_id}</span>
+          <br />
+          <span>Date Created: {dateCreated}</span>
+          <br />
+          <span>
+            {" "}
+            <input
+              type="checkbox"
+              name="checkbox"
+              onClick={handleChecked}
+              checked={complete}
+            />
+            <strong> Date Completed:</strong>
+            {complete && <> {dateCompleted} </>}
+          </span>
+          <br />
+        </Card.Text>
+        <Button variant="primary" onClick={handleDelete}>
+          DELETE
+        </Button>
+      </Card.Body>
+    </Card>
   );
 }
 

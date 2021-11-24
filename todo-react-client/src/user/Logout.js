@@ -1,5 +1,4 @@
-import React from "react";
-import { useContext } from "react/cjs/react.development";
+import React, { useContext } from "react";
 import { StateContext } from "../Contexts";
 
 export default function Logout() {
@@ -18,7 +17,7 @@ export default function Logout() {
           marginLeft: "1.3%",
         }}
       >
-        Logged in as: <b>{user}</b>
+        Logged in as: <b>{user.username}</b>
       </label>
       <input className="space" type="submit" value="Logout"></input>
     </form>

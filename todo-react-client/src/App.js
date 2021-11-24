@@ -10,7 +10,7 @@ import { Container } from "react-bootstrap";
 
 function App() {
   const [state, dispatch] = useReducer(appReducer, {
-    user: "",
+    user: {},
     todos: [],
   });
 
