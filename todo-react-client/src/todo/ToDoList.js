@@ -5,7 +5,7 @@ import { StateContext } from "../Contexts";
 export default function ToDoList() {
   const { state } = useContext(StateContext);
   const { todos } = state;
-  console.log("Inside ToDoList Component", todos);
+  //console.log("Inside ToDoList Component", todos);
   return (
     <div>
       {todos.length === 0 && <h6>No todo's found for current user.</h6>}

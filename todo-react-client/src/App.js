@@ -6,12 +6,15 @@ import { StateContext } from "./Contexts.js";
 import { Router, View } from "react-navi";
 import { mount, route } from "navi";
 import CreateToDoItem from "./todo/CreateToDoItem";
+import UserPage from "./pages/UserPage";
+import ProfilePage from "./pages/ProfilePage";
 import { Container } from "react-bootstrap";
 
 function App() {
   const initialToDos = [];
   const [state, dispatch] = useReducer(appReducer, {
     user: {},
+    users: [],
     todos: initialToDos,
   });
 
@@ -21,6 +24,10 @@ function App() {
     "/": route({ view: <HeaderBar /> }),
     "/todo/create": route({
       view: <CreateToDoItem />,
+    }),
+    "/user": route({ view: <UserPage /> }),
+    "/user/:_id": route((req) => {
+      return { view: <ProfilePage userID={req.params._id} /> };
     }),
   });
 

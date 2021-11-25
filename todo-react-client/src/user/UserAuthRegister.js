@@ -47,7 +47,7 @@ export default function UserAuthRegister() {
           </Row>
           <Row>
             <div className="mb-2" style={{ marginLeft: "31%" }}>
-              <Link href="">Access Registered Users Page</Link>
+              <Link href="/user">Access Registered Users Page</Link>
             </div>
           </Row>
         </Col>

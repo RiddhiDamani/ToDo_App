@@ -56,7 +56,6 @@ function ToDoItem({
   }, [updateTodo]);
 
   const handleDelete = () => {
-    console.log("Trying to delete: ", _id);
     deleteToDo(_id);
   };
 
@@ -81,21 +80,25 @@ function ToDoItem({
           <br />
           <span>
             {" "}
-            <input
-              type="checkbox"
-              name="checkbox"
-              onClick={handleChecked}
-              checked={dateCompleted ? true : false}
-            />
+            {state.user.access_token && (
+              <input
+                type="checkbox"
+                name="checkbox"
+                onClick={handleChecked}
+                checked={dateCompleted ? true : false}
+              />
+            )}
             <strong> Date Completed:</strong>
             {dateCompleted && <> {dateCompleted} </>}
             {/* {complete && <> {dateCompleted} </>} */}
           </span>
           <br />
         </Card.Text>
-        <Button variant="primary" onClick={handleDelete}>
-          DELETE
-        </Button>
+        {state.user.access_token && (
+          <Button variant="primary" onClick={handleDelete}>
+            DELETE
+          </Button>
+        )}
       </Card.Body>
     </Card>
   );

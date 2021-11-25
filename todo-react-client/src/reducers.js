@@ -16,8 +16,18 @@ function userReducer(state, action) {
   }
 }
 
+function usersReducer(state, action) {
+  //console.log("Action:", action);
+  switch (action.type) {
+    case "FETCH_USERS":
+      return action.users;
+    default:
+      return state;
+  }
+}
+
 function todoReducer(state, action) {
-  console.log("Action:", action);
+  //console.log("Action:", action);
   switch (action.type) {
     case "CREATE_TODO":
       const newToDo = {
@@ -29,15 +39,10 @@ function todoReducer(state, action) {
         dateCompleted: null,
         userID: action.userID,
       };
-      //console.log("Inside NEW TODO Reducer -------", newToDo);
       return [newToDo, ...state];
     case "TOGGLE_TODO":
       return state.map((t) => {
         const updatedToDo = t;
-        console.log(
-          "Inside the TOGGLE_TODO reducer option: ",
-          t._id + " " + action.id
-        );
         if (t._id === action.id) {
           // updatedToDo.complete = action.complete;
           updatedToDo.dateCompleted = action.dateCompleted;
@@ -58,6 +63,7 @@ function todoReducer(state, action) {
 export default function appReducer(state, action) {
   return {
     user: userReducer(state.user, action),
+    users: usersReducer(state.users, action),
     todos: todoReducer(state.todos, action),
   };
 }

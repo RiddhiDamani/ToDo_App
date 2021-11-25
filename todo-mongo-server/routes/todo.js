@@ -30,14 +30,6 @@ router.get("/", async function (req, res, next) {
   return res.status(200).json({ todos: todos });
 });
 
-// router.get("/:id", async function (req, res, next) {
-//   //const todos = await Todo.find().where("id").equals(req.payload.id).exec();
-//   // Mongoose find query to retrieve post where todoId == req.params.todoID
-//   const todos = await Todo.find().where("_id").equals(req.params.id).exec();
-//   console.log("CHECKING TODOS BY USER-ID");
-//   return res.status(200).json(todos);
-// });
-
 // POST Request
 router.post("/", async function (req, res) {
   const todos = new Todo({
