@@ -1,7 +1,6 @@
 import AppHeader from "../AppHeader.js";
 import UserAuthRegister from "../user/UserAuthRegister.js";
 import React from "react";
-
 import { Nav, Navbar, Container, Row } from "react-bootstrap";
 
 export default function HeaderBar() {
@@ -28,6 +27,18 @@ export default function HeaderBar() {
           <UserAuthRegister />
         </React.Suspense>{" "}
       </Row>
+      <div>
+        <br />
+        <div
+          style={{
+            color: "#050680",
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          © Developed with ♥ by: Riddhi Damani
+        </div>
+      </div>
     </>
   );
 }
