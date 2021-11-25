@@ -29,7 +29,7 @@ export default function UserPage() {
   return (
     <>
       <AppHeader />
-      <h3> Registered Users List </h3>
+      {/* <h3> Registered Users List </h3> */}
       {isLoading && "Users loading..."}
       <UserList /> <br />
       <div>
