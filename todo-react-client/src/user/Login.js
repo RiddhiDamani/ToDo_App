@@ -52,6 +52,7 @@ export default function Login() {
           type: "LOGIN",
           username,
           access_token: user.data.access_token,
+          _id: user.data._id,
         });
       }
     }

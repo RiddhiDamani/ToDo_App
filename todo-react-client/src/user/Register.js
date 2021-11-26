@@ -17,20 +17,26 @@ export default function Register({ show, handleClose }) {
     data: { username, password, passwordConfirmation: password },
   }));
 
-  // const [user, register] = useResource((username, password) => ({
-  //   url: "/users",
-  //   method: "post",
-  //   data: { username, password },
-  // }));
-
   const { dispatch } = useContext(StateContext);
 
   useEffect(() => {
     if (user && user.data) {
-      dispatch({ type: "REGISTER", username: user.data.username });
+      dispatch({
+        type: "REGISTER",
+        username: user.data.username,
+        access_token: user.data.access_token,
+        _id: user.data._id,
+      });
     }
     // eslint-disable-next-line
   }, [user]);
+
+  // useEffect(() => {
+  //   if (user && user.data) {
+  //     dispatch({ type: "REGISTER", username: user.data.username });
+  //   }
+  //   // eslint-disable-next-line
+  // }, [user]);
 
   useEffect(() => {
     if (user && user.isLoading === false && (user.data || user.error)) {

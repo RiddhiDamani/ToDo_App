@@ -84,7 +84,7 @@ function ToDoItem({
               <input
                 type="checkbox"
                 name="checkbox"
-                onClick={handleChecked}
+                onChange={handleChecked}
                 checked={dateCompleted ? true : false}
               />
             )}

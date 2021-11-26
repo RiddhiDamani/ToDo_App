@@ -7,6 +7,8 @@ export default function UserList() {
   const { state } = useContext(StateContext);
   const { users } = state;
 
+  //console.log(state.users);
+
   return (
     <div>
       <Card>
@@ -14,12 +16,7 @@ export default function UserList() {
         <Card.Body>
           {users.map((p, i) => (
             <Card.Text>
-              <User
-                {...p}
-                userID={p._id}
-                username={p.username}
-                key={"user-" + i}
-              />
+              <User {...p} userID={p._id} username={p.username} key={p._id} />
             </Card.Text>
           ))}
         </Card.Body>
