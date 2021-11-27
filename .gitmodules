@@ -1,0 +1,3 @@
+[submodule "todo-app-v00"]
+	path = todo-app-v00
+	url = https://github.com/RiddhiDamani/todo-app-v00.git
