@@ -44,6 +44,7 @@ function todoReducer(state, action) {
       return [newToDo, ...state];
     case "TOGGLE_TODO":
       return state.map((t) => {
+        //console.log(t);
         const updatedToDo = t;
         if (t._id === action.id) {
           // updatedToDo.complete = action.complete;

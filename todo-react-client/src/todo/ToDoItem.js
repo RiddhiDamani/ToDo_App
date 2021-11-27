@@ -23,15 +23,17 @@ function ToDoItem({
     },
   }));
 
-  const [updateTodo, updateToDo] = useResource(({ dateCompleted }) => ({
-    url: `/todo/${_id}`,
-    method: "patch",
-    headers: { Authorization: `${user.access_token}` },
-    data: {
-      username: user.username,
-      dateCompleted,
-    },
-  }));
+  const [updateTodo, updateToDoItem] = useResource(
+    ({ _id, dateCompleted }) => ({
+      url: `/todo/${_id}`,
+      method: "patch",
+      headers: { Authorization: `${user.access_token}` },
+      data: {
+        dateCompleted,
+        username: user.username,
+      },
+    })
+  );
 
   useEffect(() => {
     if (deletedToDo && deletedToDo.data && deletedToDo.isLoading === false) {
@@ -44,7 +46,7 @@ function ToDoItem({
   useEffect(() => {
     // if todos.data contains a value - it indicates that the request is complete and we
     // have recieved data back from the server.
-    if (updateTodo && updateTodo.isLoading === false && updateTodo.data) {
+    if (updateTodo && updateTodo.data && updateTodo.isLoading === false) {
       dispatch({
         type: "TOGGLE_TODO",
         // complete: updateTodo.data.complete,
@@ -63,8 +65,7 @@ function ToDoItem({
     complete = e.target.checked ? true : false;
     dateCompleted =
       complete === true ? Date(Date.now()).toString().slice(0, 25) : null;
-    updateToDo({ dateCompleted: dateCompleted });
-    //updateToDo({ complete: e.target.checked, dateCompleted: dateCompleted });
+    updateToDoItem({ _id, dateCompleted: dateCompleted });
   };
 
   return (
@@ -84,7 +85,7 @@ function ToDoItem({
               <input
                 type="checkbox"
                 name="checkbox"
-                onChange={handleChecked}
+                onClick={handleChecked}
                 checked={dateCompleted ? true : false}
               />
             )}
