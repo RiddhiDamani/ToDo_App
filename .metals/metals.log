@@ -1,0 +1,5 @@
+[0m2021.11.29 10:18:16 INFO  Started: Metals version 0.10.9 in workspace '/Users/riddhidamani/Documents/DePaul_CourseWork/CSC_436_Web_Applications/Homework_Assignments/hw4/todo_app' for client Visual Studio Code 1.62.3.[0m
+[0m2021.11.29 10:18:22 INFO  time: initialize in 6.02s[0m
+[0m2021.11.29 10:18:22 WARN  Build server is not auto-connectable.[0m
+[0m2021.11.29 10:18:22 WARN  no build tool detected in workspace '/Users/riddhidamani/Documents/DePaul_CourseWork/CSC_436_Web_Applications/Homework_Assignments/hw4/todo_app'. The most common cause for this problem is that the editor was opened in the wrong working directory, for example if you use sbt then the workspace directory should contain build.sbt. [0m
+[0m2021.11.29 20:40:36 INFO  shutting down Metals[0m

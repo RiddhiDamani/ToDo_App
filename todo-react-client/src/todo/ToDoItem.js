@@ -69,7 +69,7 @@ function ToDoItem({
   };
 
   return (
-    <Card>
+    <Card style={{ width: "22rem" }}>
       <Card.Body>
         <Card.Title>{title}</Card.Title>
         <Card.Text>
